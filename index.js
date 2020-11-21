@@ -7,4 +7,10 @@ bot.once("ready", () => {
 	console.log("Bot is online!");
 });
 
+bot.on("message", (msg) => {
+	if (msg.content === "Hello") {
+		msg.reply("Hello from Bot!");
+	}
+});
+
 bot.login(config.token);
