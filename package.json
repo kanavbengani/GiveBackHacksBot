@@ -9,6 +9,8 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"discord.js": "^12.4.1"
+		"discord.js": "^12.4.1",
+		"dom-parser": "^0.1.6",
+		"node-fetch": "^2.6.1"
 	}
 }
