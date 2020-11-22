@@ -27,7 +27,7 @@ bot.on("message", async message => {
 		const review = args.shift().toLowerCase();
 
 		text = await fetchReview(review);
-		message.reply(text);
+		// message.reply(text);
 	}
 });
 
@@ -81,43 +81,6 @@ async function fetchAuthor(authorName) {
 	var resultParsed = parser.parseFromString(x[0].innerHTML, "text/xml")
 	return resultParsed.getElementsByTagName("author")[0].childNodes[3].textContent.toString();
 }
-/*
-async function fetchDesc(bookName) {
-	let response = await fetch('https://www.goodreads.com/search/index.xml?key=iFBuNgOuOt67dGewnaVPg&q=' + bookName)
-	let data = await response.text();
-
-	var xmlDoc = parser.parseFromString(data, "text/xml");
-	var x = xmlDoc.getElementsByTagName("results");
-
-	var resultParsed = parser.parseFromString(x[0].innerHTML, "text/xml")
-	var authorName = resultParsed.getElementsByTagName("author")[0].childNodes[3].textContent.toString();
-	
-	response = await fetch('https://www.goodreads.com/api/author_url/' + authorName + '?key=iFBuNgOuOt67dGewnaVPg');
-	data = await response.text();
-
-	xmlDoc = parser.parseFromString(data, "text/xml");
-	let authorId = xmlDoc.getElementsByTagName("author")[0].getAttribute("id").toString();
-	console.log("Author Id: " + authorId);
-
-	// var x = xmlDoc.getElementsByTagName("results");
-	// var resultParsed = parser.parseFromString(x[0].innerHTML, "text/xml")
-	// let authorId = resultParsed.getElementsByTagName("author")[0].childNodes[1].textContent.toString();
-
-	response = await fetch('https://www.goodreads.com/author/list/' + authorId + '?format=xml&key=iFBuNgOuOt67dGewnaVPg');
-	data = await response.text();
-
-	xmlDoc = parser.parseFromString(data, "text/xml");
-	x = xmlDoc.getElementsByTagName("author");
-
-	
-	for (i = 0; i < x[0].childNodes[8].getElementsByTagName("title").length; i++) {
-		if (x[0].childNodes[8].getElementsByTagName("title")[i].textContent.toLowerCase().includes(bookName.toLowerCase)){
-			return x[0].childNodes[8].getElementsByTagName("description")[i].textContent;
-		}
-	}
-
-	
-}*/
 
 async function fetchReview(bookName) {
 	let response = await fetch('https://www.goodreads.com/search/index.xml?key=iFBuNgOuOt67dGewnaVPg&q=' + bookName)
@@ -127,9 +90,10 @@ async function fetchReview(bookName) {
 	var x = xmlDoc.getElementsByTagName("results");
 
 	var resultParsed = parser.parseFromString(x[0].innerHTML, "text/xml")
-	console.log(resultParsed.getElementsByTagName("work")[0].childNodes);
+	x = resultParsed.getElementsByTagName("id");
+	console.log(x[0].textContent);
 }
-	
+
 
 
 
