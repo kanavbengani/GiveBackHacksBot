@@ -16,7 +16,6 @@ bot.on("message", async message => {
 		const args = message.content.slice(7).trim().split(' ');
 		const bookName = args.shift().toLowerCase();
 
-		console.log(command);
 		text = await fetchAuthor(bookName);
 		message.reply(text);
 	}
