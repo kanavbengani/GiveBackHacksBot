@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const fetch = require("node-fetch");
-//const config = require("./config.json");
+const config = require("./config.json");
 var DomParser = require('dom-parser');
 var parser = new DomParser();
 
@@ -23,7 +23,7 @@ bot.on("message", async message => {
 
 bot.on("message", async message => {
 	if (message.content.startsWith(prefix + 'review')) {
-		const args = message.content.slice(12).trim().split(' ');
+		const args = message.content.slice(7).trim().split(' ');
 		const review = args.shift().toLowerCase();
 
 		text = await fetchReview(review);
@@ -127,8 +127,10 @@ async function fetchReview(bookName) {
 	var x = xmlDoc.getElementsByTagName("results");
 
 	var resultParsed = parser.parseFromString(x[0].innerHTML, "text/xml")
-	console.log(resultParsed.getElementsByTagName("average_rating"));
+	console.log(resultParsed.getElementsByTagName("work")[0].childNodes);
 }
+	
 
 
-bot.login("Nzc5NzM2NDc5ODc3ODI0NTIy.X7k4Lw.l1RdZZ8pnOS1Ms3_w_cpYWhpLqA");
+
+bot.login(config.token);
