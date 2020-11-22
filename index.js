@@ -94,7 +94,4 @@ async function fetchReview(bookName) {
 	console.log(x[0].textContent);
 }
 
-
-
-
 bot.login(config.token);
